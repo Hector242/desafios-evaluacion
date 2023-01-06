@@ -97,6 +97,38 @@ def exercise3(matrix):
     return
 
 def exercise4(matrix):
+    
+    print("\n*** exercise 4 ***")
+    
+    # Matrix inverse
+    matrix_inv = l.inv(matrix)
+    print("\nMatrix inverse: \n",matrix_inv)
+
+    # verification
+    # If multiply the original matrix against the inverse we should get the identity
+    matrix_mult = np.matmul(matrix,matrix_inv)
+    print("\nIf multiply the original matrix against the inverse we should get the identity: \n",matrix_mult)
+
+    # Calculating the determinante
+    matrix_det = l.det(matrix)
+    print("\nCalculating the determinante: ",matrix_det)
+    
+    # verification
+    if matrix_det != 0:
+        print("matrix no singular\n")
+    else:
+        print("nmatrix is singular\n")
+    
+    # calculating the traze of the matrix
+    matrix_trace = np.trace(matrix)
+    print("\ncalculating the traze of the matrix: ",matrix_trace)
+
+     # calculating the eigenvalues and right eigenvectors
+    eigenvalues, eigenvectors = l.eig(matrix)
+    print("\neigenvalues: ",eigenvalues)
+    print("\neigenvector: \n",eigenvectors)
+
+def exercise5():
     pass
 
 def main():
@@ -115,6 +147,9 @@ def main():
 
     #exercise4
     exercise4(matrix)
+
+    #exercise5
+    exercise5()
     
 
 if __name__ == '__main__':
