@@ -29,70 +29,98 @@ def exercise0():
 
 def exercise1(matrix):
     # Using the Linear Algebra module for numpy linalg
-    # taking vectors from the matrix
-    print("\n*** exercise 1 ***")
-    v1 = matrix[0, :]
-    v2 = matrix[1, :]
-    v3 = matrix[2, :]
-    print("\nVectors from the previous matrix \n")
-    print("V1: ",v1,"V2: ",v2,"V3: ",v3)
 
     # l-infinity
-    infinity_norm1 = l.norm(v1, np.inf)
-    infinity_norm2 = l.norm(v2, np.inf)
-    infinity_norm3 = l.norm(v3, np.inf)
-    print("\n norm l-infinity for v1: ", infinity_norm1,"for v2: ", infinity_norm2,"for v3: ", infinity_norm3)
-    
+    matrix_infinity_norm = l.norm(matrix, np.inf, axis=1)
+    print("norm l-infinity per vector: ", matrix_infinity_norm)
     #norm l0
-    norml0_v1 = l.norm(v1, 0)
-    norml0_v2 = l.norm(v2, 0)
-    norml0_v3 = l.norm(v3, 0)
-    print("\n norm l0 for v1: ", norml0_v1,"for v2: ", norml0_v2,"for v3: ", norml0_v3)
-
+    matrix_norml0 = l.norm(matrix, 0, axis=1)
+    print("norm l0 per vector: ", matrix_norml0)
     #norm l1
-    norml1_v1 = l.norm(v1, 1)
-    norml1_v2 = l.norm(v2, 1)
-    norml1_v3 = l.norm(v3, 1)
-    print("\n norm l1 for v1: ", norml1_v1,"for v2: ", norml1_v2,"for v3: ", norml1_v3)
-
+    matrix_norml1 = l.norm(matrix, 1, axis=1)
+    print("norm l1 per vector: ", matrix_norml1)
     #norm l2
-    norml2_v1 = l.norm(v1, 2)
-    norml2_v2 = l.norm(v2, 2)
-    norml2_v3 = l.norm(v3, 2)
-    print("\n norm l2 for v1: ", norml2_v1,"for v2: ", norml2_v2,"for v3: ", norml2_v3)
+    matrix_norml2 = l.norm(matrix, 2, axis=1)
+    print("norm l2 per vector: ", matrix_norml2)
     
-    return norml2_v1, norml2_v2, norml2_v3
+    
+    return matrix_norml2
 
-def exercise2(norms):
+def exercise2(norms, matrix):
 
     print("\n*** exercise 2 ***")
 
     # sorting norm l2
     array_norms = np.array(norms)
-    array_norms[::-1].sort()
-    print("\n sorting numbers: ",array_norms)
+    array_norms[::-1].sort() #mutating the array for decreasing
+    print("\nsorting numbers: ",array_norms)
+
+    #Identify position
+    Va = array_norms[0]
+    Vb = array_norms[1]
+    Vc = array_norms[2]
+
+    print("Va: ", Va)
+    print("Vb: ", Vb)
+    print("Vc: ", Vc)
+
+    #from the original matrix
+    V1 = matrix[0]
+    V2 = matrix[1]
+    V3 = matrix[2]
+
+    print("original vectors v1: ",V1,"v2: ",V2,"v3: ",V3)
+    #Reorder matrix
+    new_matrix = []
+
+    if Va == l.norm(V1, 2):
+        new_matrix.append(V1)
+    elif Va == l.norm(V2, 2):
+        new_matrix.append(V2)
+    else:
+        new_matrix.append(V3)
     
-    #TO FINISH
+    if Vb == l.norm(V1, 2):
+        new_matrix.append(V1)
+    elif Vb == l.norm(V2, 2):
+        new_matrix.append(V2)
+    else:
+        new_matrix.append(V3)
+    
+    if Vc == l.norm(V1, 2):
+        new_matrix.append(V1)
+    elif Vc == l.norm(V2, 2):
+        new_matrix.append(V2)
+    else:
+        new_matrix.append(V3)
+    
     # creating the original matrix
-    v1 = [-2, -4, 2]
-    v2 = [-2, 1, 2]
-    v3 = [4, 2, 5]
-    matrix = np.array([v3,v1,v2])
-    print("\n matrix from norm l2: \n",matrix)
+    new_matrix = np.array(new_matrix)
+    print("original matrix: \n",matrix)
+    print("matrix with new order from norm l2: \n",new_matrix)
+
 
     return
 
 def exercise3(matrix):
     
     print("\n*** exercise 3 ***")
+
+    # matrix
+    print("\nMatrix A: \n",matrix)
     
     # taking the media from matrix A
     media = np.mean(matrix, axis=0)
-    print("\n the media of the matrix A is: ",media)
+    print("\nthe media of the matrix A is: ",media)
 
     # taking the desviacion standard from matrix A
     dst = np.std(matrix, axis=0)
-    print("\n the desviacion standard of the matrix A is: ",dst)
+    print("\nthe desviacion standard of the matrix A is: ",dst)
+
+    #TO FINISH
+    # rest each mean value to it's correspond column on the matrix
+    rest_array = matrix[:,1] - media
+    print("\nthe rest of the each media value for matriz colums is:  ",rest_array)
 
     return
 
@@ -115,9 +143,9 @@ def exercise4(matrix):
     
     # verification
     if matrix_det != 0:
-        print("matrix no singular\n")
+        print("matrix no singular")
     else:
-        print("nmatrix is singular\n")
+        print("nmatrix is singular")
     
     # calculating the traze of the matrix
     matrix_trace = np.trace(matrix)
@@ -140,7 +168,7 @@ def main():
     norms = exercise1(matrix)
 
     #exercise2
-    exercise2(norms)
+    exercise2(norms, matrix)
 
     #exercise3
     exercise3(matrix)
