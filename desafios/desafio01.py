@@ -99,7 +99,6 @@ def exercise2(norms, matrix):
     print("original matrix: \n",matrix)
     print("matrix with new order from norm l2: \n",new_matrix)
 
-
     return
 
 def exercise3(matrix):
@@ -117,10 +116,13 @@ def exercise3(matrix):
     dst = np.std(matrix, axis=0)
     print("\nthe desviacion standard of the matrix A is: ",dst)
 
-    #TO FINISH
     # rest each mean value to it's correspond column on the matrix
-    rest_array = matrix[:,1] - media
-    print("\nthe rest of the each media value for matriz colums is:  ",rest_array)
+    rest_array = matrix - media
+    print("\nthe rest of the each media value for matriz colums is:  \n",rest_array)
+
+    # divide each desviacion standard value to it's correspond column on the matrix
+    div_array = matrix/dst
+    print("\nthe division of the each desviacion standard value for matriz colums is:  \n",div_array)
 
     return
 
