@@ -152,33 +152,28 @@ def exercise5():
     print("\n*** exercise 5 ***")
 
     #vectors
-    x1 = np.array([1,2,3])
-    x2 = np.array([4,5,6])
-    x3 = np.array([7,8,9])
-    X = np.array([x1,x2,x3])
+    X = np.array([[1,2,3],[4,5,6],[7,8,9]])
+    C = np.array([[1,0,0],[0,1,1]])
 
-    print("X Vectors: x1: ",x1,"x2: ",x2,"x3: ",x3)
-
-    c1 = np.array([1,0,0])
-    c2 = np.array([0,1,1])
-    C = np.array([c1,c2])
-
-    print("C Vectors: c1: ",c1,"c2: ",c2)
+    print("Arrays: X: \n",X,"\nC: \n",C)
 
     #calculating the distance between the X vectors and C vectors.
-    dist01 = l.norm(x1 - c1)
-    print ("distance between x1 and c1: ", dist01)
-    dist02 = l.norm(x1 - c2)
-    print ("distance between x1 and c2: ", dist02)
-    dist03 = l.norm(x2 - c1)
-    print ("distance between x2 and c1: ", dist03)
-    dist04 = l.norm(x2 - c2)
-    print ("distance between x1 and c2: ", dist04)
-    dist05 = l.norm(x3 - c1)
-    print ("distance between x1 and c1: ", dist05)
-    dist06 = l.norm(x3 - c2)
-    print ("distance between x2 and c2: ", dist06)
+    resta01 = X - C[0]
+    resta02 = X - C[1]
 
+    print("broadcasting new values of X with c1: \n",resta01,"\nX with c2: \n",resta02)
+    dist01 = l.norm(resta01[0])
+    print ("distance between x1 and c1: ", dist01)
+    dist02 = l.norm(resta01[1])
+    print ("distance between x1 and c2: ", dist02)
+    dist03 = l.norm(resta01[2])
+    print ("distance between x2 and c1: ", dist03)
+    dist04 = l.norm(resta02[0])
+    print ("distance between x2 and c2: ", dist04)
+    dist05 = l.norm(resta02[1])
+    print ("distance between x3 and c1: ", dist05)
+    dist06 = l.norm(resta02[2])
+    print ("distance between x3 and c2: ", dist06)
 
 def main():
     #exercise0
